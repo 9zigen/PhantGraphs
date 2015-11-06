@@ -407,10 +407,10 @@ angular.module('phantGraph')
             }
             
             function getServerUrlByID(serverID) {
-                var server = $scope.serversList.filter(srv) {
+                var server = $scope.serversList.filter(function(srv) {
                     return srv.rowid = serverID;
-                };
-                return srv[0].url;
+                });
+                return server[0].url;
             }
 
             function updateALL() {
