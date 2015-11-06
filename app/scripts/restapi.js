@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phantGraph')
-    .constant('RESTENDPOINT_URI','http://localhost:3000/api/')
+    .constant('RESTENDPOINT_URI','http://192.168.1.2:3000/api/')
     .service('phantServerServices',[ '$http', 'RESTENDPOINT_URI', function ( $http , RESTENDPOINT_URI) {
         var phantServer = this;
         

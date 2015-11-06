@@ -19,10 +19,17 @@ angular.module('phantGraph')
                 });
             };
             
+            function getServerUrlByID(serverID) {
+                var server = $scope.serversList.filter(srv) {
+                    return srv.rowid = serverID;
+                };
+                return srv[0].url;
+            }
+            
             // For each stream, query the server for the stream fields.
             function getStreamFields( streamID ) {
                 try {
-                    phantApiServices.streamInfo( $scope.serversList[$scope.streamsList[streamID].serverid-1].url, $scope.streamsList[streamID].key )
+                    phantApiServices.streamInfo( getServerUrlByID($scope.streamsList[streamID].serverid), $scope.streamsList[streamID].key )
                         .then ( function ( result ) {
                             //console.log("getStreamFields SUCCESS: ");
                             $scope.streamsList[streamID].fields=[];

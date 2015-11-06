@@ -406,6 +406,13 @@ angular.module('phantGraph')
                 }
             }
             
+            function getServerUrlByID(serverID) {
+                var server = $scope.serversList.filter(srv) {
+                    return srv.rowid = serverID;
+                };
+                return srv[0].url;
+            }
+
             function updateALL() {
                 // Let's update the data for all graphs that are defined.
                 for (var i = 0 ; i < $scope.graphsList.length ; i++) {
@@ -414,12 +421,12 @@ angular.module('phantGraph')
                     $scope.graphsList[i].errorCount = 0;
                     //console.log($scope.graphsList[i].options );
                     
-                    getGraphData( i ,  $scope.serversList[$scope.graphsList[i].serverid].url ,  $scope.streamsList[$scope.graphsList[i].streamid-1].key );
+                    getGraphData( i , getServerUrlByID($scope.graphsList[i].serverid),  $scope.streamsList[$scope.graphsList[i].streamid-1].key );
                 
                 }
             }
 
-             function updateLastData( errorClear ) {
+            function updateLastData( errorClear ) {
                 // Let's update the data for all graphs.
                 for (var i = 0 ; i < $scope.graphsList.length ; i++) {
                     
@@ -431,7 +438,7 @@ angular.module('phantGraph')
                         // We only refresh the stream data if no other refresh is running.
                         // This is to avoid nested calls to the ws.
                         $scope.graphsList[i].isRefreshing = true ;
-                        getLastGraphData( i ,  $scope.serversList[$scope.graphsList[i].serverid].url ,  $scope.streamsList[$scope.graphsList[i].streamid-1].key );
+                        getLastGraphData( i , getServerUrlByID($scope.graphsList[i].serverid),  $scope.streamsList[$scope.graphsList[i].streamid-1].key );
                     }
                 }
             }           
